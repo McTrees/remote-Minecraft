@@ -21,34 +21,48 @@
 
 	<div class="w3-row-padding w3-center w3-margin-top">
 		<div class="w3-quarter w3-hover-opacity">
-			<div class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=restart';" class="w3-card w3-container" style="min-height:460px">
 				<h3>Restart</h3><br>
 				<i class="fa fa-repeat w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 
 		<div class="w3-quarter w3-hover-opacity">
-			<div class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=stop';" class="w3-card w3-container" style="min-height:460px">
 				<h3>Stop</h3><br>
 				<i class="fa fa-ban w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 
 		<div class="w3-quarter w3-hover-opacity">
-			<div class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=start';" class="w3-card w3-container" style="min-height:460px">
 				<h3>Start</h3><br>
 				<i class="fa fa-play w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 		<div class="w3-quarter w3-hover-opacity">
-			<div class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=backup';" class="w3-card w3-container" style="min-height:460px">
 				<h3>Backup</h3><br>
 				<i class="fa fa-floppy-o w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 
 	</div>
+    <center><p>Status: <?php echo exec("msm IM status"); ?></p></center>
 
+<?php
+
+if(isset($_GET["action"]))
+{
+    $out = exec("msm IM " . escapeshellarg($_GET["action"]));
+}
+
+?>
+
+<?php 
+if (isset($out)) 
+    echo "<center><p>Command output: " . $out . "</p></center>";
+?>
 
 
 </body>
