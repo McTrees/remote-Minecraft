@@ -1,5 +1,4 @@
 <h1>testing 123</h1>
-
 <p>Status: <?php echo exec("msm IM status"); ?></p>
 
 <?php
