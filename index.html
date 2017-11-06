@@ -95,9 +95,12 @@ function show() {
     <div class="w3-white w3-card w3-display-middle">
         <h3>You are not signed in. Please sign in to continue.</h3>
         <form action="/msmverify.php" method="post">
-        <center>Password: <input type="password" name="password"></input><button>Submit</button></center>
+        <center>Password: <input class="w3-input" type="password" name="password"></input><button>Submit</button></center>
         <br>
         </form>
+        <div class="<?php if (isset($_GET["e"])) { echo 'w3-container w3-red'; } ?>">
+            <p><?php if (isset($_GET["e"])) { echo $_GET["e"]; } ?></p>
+        </div>
     </div>
 </div>
 
@@ -108,7 +111,7 @@ if(isset($_COOKIE["token"])) {
     //The user has successfully logged in
     } else {
         //it's likely the user is a hacker
-        echo "<center><h3>Looks like your auth cookie expired, you'll have to re-enter your password.</h3></center>";
+        echo "<center><h3>Looks like your auth cookie expired, you'll have to clear your cookies and re-enter your password.</h3></center>";
         echo "<script>document.getElementById('ben-overlay').style.display = 'block';</script>";
     }
 } else {
