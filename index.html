@@ -51,10 +51,16 @@
     <center><p>Status: <?php echo exec("msm IM status"); ?></p></center>
 
 <?php
+$auth_string = "your-random-string-here";
 
 if(isset($_GET["action"]))
 {
-    $out = exec("msm IM " . escapeshellarg($_GET["action"]));
+    if($_COOKIE["token"] == $auth_string) {
+        $out = exec("msm IM " . escapeshellarg($_GET["action"]));
+    }
+    else {
+        echo "Seems you're not signed in. Please refresh the page and do so.";
+    }
 }
 
 ?>
@@ -79,6 +85,31 @@ function show() {
     <div class="ben-loader"></div><br>
     </center>
 </div>
+
+<div id="ben-overlay">
+    <div class="w3-white w3-card w3-display-middle">
+        <h3>You are not signed in. Please sign in to continue.</h3>
+        <form action="/msmverify.php" method="post">
+        <center>Password: <input type="password" name="password"></input><button>Submit</button></center>
+        <br>
+        </form>
+    </div>
+</div>
+
+<!--auth-->
+<?php
+if(isset($_COOKIE["token"])) {
+    if($_COOKIE["token"] == $auth_string) {
+    //The user has successfully logged in
+    } else {
+        //it's likely the user is a hacker
+        echo "<center><h3>Looks like your auth cookie expired, you'll have to re-enter your password.</h3></center>";
+        echo "<script>document.getElementById('ben-overlay').style.display = 'block';</script>";
+    }
+} else {
+    echo "<script>document.getElementById('ben-overlay').style.display = 'block';</script>";
+}
+?>
 
 </body>
 </html>
