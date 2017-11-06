@@ -5,6 +5,7 @@ if ($_POST["password"] == "password") {
     echo "Auth Token Set, Redirecting...";
     header('Location: http://ben.mctrees.net/msmcss.html');
 } else {
-    echo "Incorrect password!";   
+    echo "Incorrect password!";
+    header('Location: http://ben.mctrees.net/msmcss.html?e=Incorrect Password!');
 }
 ?>
