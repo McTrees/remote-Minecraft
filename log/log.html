@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+
+</head>
+<b>logs</b>
+<body>
+<div style="height:300px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+<pre>
+<p id="log"> loading </p>
+</pre>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+function get_log()
+{
+     var result = null;
+     var scriptUrl = "log.php?auth=authcode";
+     $.ajax({
+        url: scriptUrl,
+        type: 'get',
+        dataType: 'html',
+        async: false,
+        success: function(data) {
+            result = data;
+        } 
+     });
+     return result;
+}
+
+
+function update(){
+var log = get_log();
+	document.getElementById("log").innerHTML = log;
+	document.getElementById("log").scrollTop = document.getElementById.scrollHeight;
+	
+}
+update();
+setInterval(update, 5000);
+</script>
+
+
+</body>
+</html>
