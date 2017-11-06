@@ -57,6 +57,7 @@ if(isset($_GET["action"]))
 {
     if($_COOKIE["token"] == $auth_string) {
         $out = exec("msm IM " . escapeshellarg($_GET["action"]));
+        header('Location: http://ben.mctrees.net/msmcss.html?o=' . $out);
     }
     else {
         echo "Seems you're not signed in. Please refresh the page and do so.";
@@ -66,6 +67,10 @@ if(isset($_GET["action"]))
 ?>
 
 <?php 
+if (isset($_GET["o"])) {
+    $out = $_GET["o"];
+}
+
 if (isset($out)) 
     echo "<center><p>Command output: " . $out . "</p></center>";
 ?>
