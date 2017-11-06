@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://ben.mctrees.net/ben.css">
 
 <body>
 
@@ -21,32 +22,31 @@
 
 	<div class="w3-row-padding w3-center w3-margin-top">
 		<div class="w3-quarter w3-hover-opacity">
-			<div onclick="window.location.search += '&action=restart';" class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=restart';show();" class="w3-card w3-container" style="min-height:460px">
 				<h3>Restart</h3><br>
 				<i class="fa fa-repeat w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 
 		<div class="w3-quarter w3-hover-opacity">
-			<div onclick="window.location.search += '&action=stop';" class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=stop';show();" class="w3-card w3-container" style="min-height:460px">
 				<h3>Stop</h3><br>
 				<i class="fa fa-ban w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 
 		<div class="w3-quarter w3-hover-opacity">
-			<div onclick="window.location.search += '&action=start';" class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=start';show();" class="w3-card w3-container" style="min-height:460px">
 				<h3>Start</h3><br>
 				<i class="fa fa-play w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
 		<div class="w3-quarter w3-hover-opacity">
-			<div onclick="window.location.search += '&action=backup';" class="w3-card w3-container" style="min-height:460px">
+			<div onclick="window.location.search += '&action=backup';show();" class="w3-card w3-container" style="min-height:460px">
 				<h3>Backup</h3><br>
 				<i class="fa fa-floppy-o w3-margin-bottom w3-text-blue" style="font-size:120px"></i>
 			</div>
 		</div>
-
 	</div>
     <center><p>Status: <?php echo exec("msm IM status"); ?></p></center>
 
@@ -64,6 +64,21 @@ if (isset($out))
     echo "<center><p>Command output: " . $out . "</p></center>";
 ?>
 
+<script language="javascript"> 
+function show() {
+	var text = document.getElementById("loadCard");
+    text.style.display = "block";
+    return "done?";
+} 
+</script>
+
+<div id="loadCard" style="display: none" class=" w3-card w3-white w3-display-middle">
+    <center>
+    <h1>Please wait...</h1>
+    <p>Your request is being processed. Please do not press any buttons.</p>
+    <div class="ben-loader"></div><br>
+    </center>
+</div>
 
 </body>
 </html>
